@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(newplayer_start)
 GLOBAL_LIST_EMPTY(latejoin)
 GLOBAL_LIST_EMPTY(latejoin_gateway)
 GLOBAL_LIST_EMPTY(latejoin_cryo)
+GLOBAL_LIST_EMPTY(latejoin_cryo_captain)
 GLOBAL_LIST_EMPTY(latejoin_cyborg)
 
 GLOBAL_LIST_EMPTY(prisonwarp) // Prisoners go to these

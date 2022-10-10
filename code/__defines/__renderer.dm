@@ -46,6 +46,9 @@
 #define HEAT_COMPOSITE_TARGET "*heatc"
 #define WARP_EFFECT_PLANE -3
 
+#define GAME_PLANE -4
+#define MOUSE_OPACITY_TRANSPARENT   0
+
 #define DEFAULT_PLANE                   1
 	#define PLATING_LAYER               1
 	//ABOVE PLATING
@@ -111,6 +114,8 @@
 	#define MECH_GEAR_LAYER             4.07
 	//ABOVE HUMAN
 	#define ABOVE_HUMAN_LAYER           4.08
+    #define BELOW_MOB_LAYER             3.7   // Currently used only by fluff struct in bluespace shelter
+	#define INFRONT_MOB_LAYER           4.25
 	#define VEHICLE_LOAD_LAYER          4.09
 	#define CAMERA_LAYER                4.10
 	//BLOB

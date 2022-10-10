@@ -139,7 +139,7 @@ mob/living/carbon/human/proc/SetFov(var/n)
 
 mob/living/carbon/human/proc/check_fov()
 
-	if(resting || lying || client.eye != client.mob)
+	if((istype(src.loc, /obj/structure/closet)) || resting || lying || client.eye != client.mob)
 		src.fov.alpha = 0
 		return
 

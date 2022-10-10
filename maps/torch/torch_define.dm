@@ -13,7 +13,7 @@
 	overmap_event_areas = 34
 	usable_email_tlds = list("torch.ec.scg", "torch.fleet.mil", "army.mil", "freemail.net", "torch.scg", "torch.exo.cot")
 
-	allowed_spawns = list("Cryogenic Storage", "Cyborg Storage")
+	allowed_spawns = list("Cryogenic Storage", "Cyborg Storage", "Command Cryogenic Storage")
 	default_spawn = "Cryogenic Storage"
 
 	station_name  = "\improper SEV Torch"

@@ -229,7 +229,7 @@
 			to_chat(user, "<span class='notice'>You try to use your hand, but realize it is no longer attached!</span>")
 			return
 
-	var/old_loc = loc
+	//..var/atom/old_loc = loc
 
 	if (istype(loc, /obj/item/storage))
 		var/obj/item/storage/S = loc
@@ -252,8 +252,10 @@
 
 
 	if(user.put_in_active_hand(src))
-		if (isturf(old_loc))
-			do_pickup_animation(user,old_loc)	//BastionStation edit - ports eris pickup animations
+		//if (isturf(old_loc))
+		//	if(old_loc && old_loc.loc && (src != old_loc) && (src != old_loc.loc))
+		//		if((user != old_loc))
+		//			do_pickup_animation(user,old_loc)	//BastionStation edit - ports eris pickup animations
 		if(randpixel)
 			pixel_x = rand(-randpixel, randpixel)
 			pixel_y = rand(-randpixel/2, randpixel/2)

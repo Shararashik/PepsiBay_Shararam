@@ -4462,6 +4462,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/exploration)
+"kl" = (
+/turf/unsimulated/mask,
+/area/hallway/primary/fifthdeck/fore)
 "km" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
 	dir = 8
@@ -6679,6 +6682,10 @@
 /obj/machinery/camera/network/hangar,
 /turf/simulated/floor/plating,
 /area/quartermaster/hangar)
+"oJ" = (
+/obj/turbolift_map_holder/torch,
+/turf/unsimulated/mask,
+/area/hallway/primary/fifthdeck/fore)
 "oL" = (
 /obj/effect/catwalk_plated,
 /obj/machinery/camera/network/hangar{
@@ -31740,11 +31747,11 @@ jI
 ix
 lx
 fl
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+oJ
 pq
 au
 rQ
@@ -31942,11 +31949,11 @@ jJ
 jz
 jz
 fl
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+kl
 MR
 jO
 rS
@@ -32144,11 +32151,11 @@ jJ
 jA
 lq
 fl
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+kl
 MR
 jO
 rS
@@ -32346,11 +32353,11 @@ jJ
 lc
 lr
 fl
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+kl
 MR
 po
 rT
@@ -32548,11 +32555,11 @@ jK
 jL
 ly
 fl
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+kl
 fl
 qJ
 aF

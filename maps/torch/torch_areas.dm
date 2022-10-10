@@ -619,6 +619,30 @@
 	icon_state = "briefing_room"
 	sound_env = MEDIUM_SOFTFLOOR
 
+/area/command/fromcryo
+	name = "Bridge Cryo Stairs"
+	icon_state = "hallF"
+
+/area/command/tomedbay
+	name = "Bridge Medbay Stairs"
+	icon_state = "hallF"
+
+/area/command/tosechall
+	name = "Bridge Security Hallway"
+	icon_state = "hallF"
+
+/area/command/tosecbay
+	name = "Bridge Security Stairs"
+	icon_state = "hallF"
+
+/area/command/toengsupplyhall
+	name = "Bridge Eng and Suplly Hallway"
+	icon_state = "hallF"
+
+/area/command/toengsupplystair
+	name = "Bridge Eng and Suplly Stairs"
+	icon_state = "hallF"
+
 /area/command/captainmess
 	name = "Officer's Mess"
 	icon_state = "bar"
@@ -1304,7 +1328,7 @@
 // Command
 
 /area/bridge
-	name = "\improper SEV Torch Bridge"
+	name = "\improper SEV Dispater Bridge"
 	icon_state = "bridge"
 	req_access = list(access_bridge)
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND

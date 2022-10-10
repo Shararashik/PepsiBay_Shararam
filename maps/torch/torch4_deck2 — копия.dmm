@@ -4440,6 +4440,9 @@
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/seconddeck/forestarboard)
+"jp" = (
+/turf/unsimulated/mask,
+/area/hallway/primary/seconddeck/elevator)
 "jq" = (
 /obj/machinery/door/blast/shutters{
 	density = 0;
@@ -5325,7 +5328,12 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway/primary/seconddeck/center)
 "lq" = (
-/turf/simulated/floor/tiled,
+/obj/structure/railing/mapped,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/open,
 /area/hallway/primary/seconddeck/center)
 "lr" = (
 /turf/simulated/wall/r_wall/prepainted,
@@ -5679,6 +5687,14 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway/primary/seconddeck/center)
+"mk" = (
+/obj/structure/railing/mapped{
+	dir = 8;
+	icon_state = "railing0-1"
+	},
+/obj/structure/railing/mapped,
+/turf/simulated/open,
+/area/hallway/primary/seconddeck/center)
 "mo" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -5953,6 +5969,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/primary/seconddeck/center)
 "mZ" = (
+/obj/structure/stairs/east,
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -26
@@ -7713,7 +7730,7 @@
 /obj/structure/sign/warning/pods/west{
 	pixel_y = 25
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/open,
 /area/hallway/primary/seconddeck/center)
 "rt" = (
 /obj/machinery/door/firedoor,
@@ -17018,6 +17035,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/engineering/engineering_bay)
+"SD" = (
+/turf/simulated/open,
+/area/hallway/primary/seconddeck/center)
 "SH" = (
 /obj/machinery/atmospherics/valve/shutoff/supply,
 /obj/item/device/radio/intercom{
@@ -32111,7 +32131,7 @@ Kv
 ci
 kD
 rs
-lq
+mk
 mY
 kD
 id
@@ -32312,7 +32332,7 @@ iu
 jn
 ci
 kD
-lq
+SD
 lq
 mZ
 kD
@@ -33319,11 +33339,11 @@ bI
 bI
 Lf
 OV
-Ss
-Ss
-Ss
-Ss
-Ss
+jp
+jp
+jp
+jp
+jp
 na
 Om
 Jt
@@ -33521,11 +33541,11 @@ gd
 gR
 Mf
 OV
-Ss
-Ss
-Ss
-Ss
-Ss
+jp
+jp
+jp
+jp
+jp
 Ss
 Qt
 rm
@@ -33723,11 +33743,11 @@ dt
 Xl
 Nf
 OV
-Ss
-Ss
-Ss
-Ss
-Ss
+jp
+jp
+jp
+jp
+jp
 Ss
 pI
 Am
@@ -33925,11 +33945,11 @@ bI
 lE
 Nf
 OV
-Ss
-Ss
-Ss
-Ss
-Ss
+jp
+jp
+jp
+jp
+jp
 Ss
 IA
 Fm
@@ -34127,11 +34147,11 @@ NA
 Yz
 Nf
 OV
-Ss
-Ss
-Ss
-Ss
-Ss
+jp
+jp
+jp
+jp
+jp
 OV
 dn
 Gm

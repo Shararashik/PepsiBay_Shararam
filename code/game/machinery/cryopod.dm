@@ -177,6 +177,15 @@
 		/obj/item/storage/internal
 	)
 
+/obj/machinery/cryopod/command
+	name = "cryogenic freezer pod"
+	on_store_name = "Freezer Oversight"
+	time_till_despawn = 20 MINUTES
+	icon_state = "cryochamber0"
+	base_icon_state = "cryochamber0"
+	occupied_icon_state = "cryochamber3"
+
+
 /obj/machinery/cryopod/robot
 	name = "robotic storage unit"
 	desc = "A storage unit for robots."

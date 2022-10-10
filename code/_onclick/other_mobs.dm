@@ -38,8 +38,8 @@
 
 /mob/living/CtrlClickOn(var/atom/A)
 	. = ..()
-	if(!. && a_intent == I_GRAB && length(available_maneuvers))
-		. = perform_maneuver(prepared_maneuver || available_maneuvers[1], A)
+	if(!. && middle_click_intent == "jump" && length(available_maneuvers))
+		. = perform_maneuver(decls_repository.get_decl(/decl/maneuver/leap), A)
 
 /mob/living/carbon/human/RangedAttack(var/atom/A, var/params)
 	//Climbing up open spaces

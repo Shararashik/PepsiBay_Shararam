@@ -781,6 +781,17 @@
 					/obj/item/reagent_containers/food/drinks/cans/cola_lemonlime = 1,/obj/item/reagent_containers/food/drinks/cans/cola_strawberry = 1)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
+/obj/machinery/vending/soda/pepsi
+	name = "\improper Pepsi"
+	desc = "Древний автомат с богатой историей принадлежащий PepsiCo. Вкус родного ЦПСС даже в самых далеких секторах Фронтира!"
+	icon_state = "pepsi"
+	icon_vend = "pepsi-vend"
+	icon_deny = "pepsi-deny"
+	vend_delay = 11
+	base_type = /obj/machinery/vending/soda/pepsi
+	product_slogans = "Not applicable!"
+	product_ads = "Not applicable."
+
 /obj/machinery/vending/fitness
 	name = "\improper SweatMAX"
 	desc = "An exercise aid and nutrition supplement vendor that preys on your inadequacy."

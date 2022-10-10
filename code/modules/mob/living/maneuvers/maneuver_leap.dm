@@ -31,7 +31,7 @@
 		if(!affecting)//Oh shit, we don't have have any legs, we can't jump.
 			return
 
-	if(user.get_stamina() <= 20)
+	if(user.get_stamina() <= 25)
 		to_chat(user, SPAN_WARNING("You are exhausted!"))
 		return
 
@@ -42,7 +42,7 @@
 	user.visible_message("<span class='danger'>[user.name] jumps.</span>", \
 					"<span class='warning'> I jump to [loc]!</span>")
 	user.throw_at(target, 3, 0.5, user, FALSE, CALLBACK(src, /decl/maneuver/leap/proc/end_leap, user, target))
-	user.adjust_stamina(-30+(user.get_skill_value(SKILL_HAULING)/SKILL_MAX) * 10)
+	user.adjust_stamina(-35+(user.get_skill_value(SKILL_HAULING)/SKILL_MAX) * 10)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 

@@ -94,3 +94,10 @@
 	icon = 'icons/obj/jukebox.dmi'
 	icon_state = "jukebox2"
 	pixel_x = 0
+
+
+/obj/machinery/jukebox/jukebox_dispater
+	name = "radiobox"
+	desc = "Радиоприемник ловящий частоты блюспейс-радио волн. Чудо, что он еще работает!"
+	icon = 'icons/obj/jukebox_dispater.dmi'
+	icon_state = "jukebox3"

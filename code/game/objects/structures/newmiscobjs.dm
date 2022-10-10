@@ -57,6 +57,96 @@
 	layer = ABOVE_WINDOW_LAYER
 	density = 0
 
+/obj/structure/minimap
+	name = "minimap"
+	desc = "Minimap. Doesn't do anything."
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "maptable"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/serverrack
+	name = "server rack"
+	desc = "A rack full of hard drives, micro-computers, and ethernet cables. Doesn't do anything."
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "rackframe"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/orbitcontroller
+	name = "orbit controller"
+	desc = "Stable ship orbit. Doesn't do anything."
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "orbit_control"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/datalogs
+	name = "data logs"
+	desc = "Data machine. Doesn't do anything."
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "data_logs"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/datamonitor
+	name = "data monitor"
+	desc = "Data machine. Doesn't do anything."
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "data_monitor"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/datatraffic
+	name = "data traffic"
+	desc = "Data machine. Doesn't do anything."
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "data_traffic"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/blackbox
+	name = "black box"
+	desc = "Store data."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "blackbox"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/aiint
+	name = "ai interface"
+	desc = "AI interface."
+	icon = 'icons/obj/ai.dmi'
+	icon_state = "hydra"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/serverai
+	name = "ai server"
+	desc = "AI server."
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "server"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/fulepump
+	name = "fuel pump"
+	desc = "Fuel pump."
+	icon = 'icons/obj/fulepump.dmi'
+	icon_state = "fuelpump"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
 /obj/structure/fault
 	name = "some broken device"
 	desc = "A weird device. Doesn't do anything."

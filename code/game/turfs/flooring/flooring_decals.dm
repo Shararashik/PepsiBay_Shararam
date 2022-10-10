@@ -1565,6 +1565,51 @@ var/global/list/floor_decals = list()
 	icon_state = "frame_tiles"
 	icon = 'icons/turf/marks_96x96_ds13.dmi'
 
+//Gallary
+/obj/effect/floor_decal/dank/frame_tiled_large_00
+	name = "large frame with tiles"
+	icon_state = "frame_tiles00"
+	icon = 'icons/turf/marks_ds13.dmi'
+
+/obj/effect/floor_decal/dank/frame_tiled_large_10
+	name = "large frame with tiles"
+	icon_state = "frame_tiles10"
+	icon = 'icons/turf/marks_ds13.dmi'
+
+/obj/effect/floor_decal/dank/frame_tiled_large_20
+	name = "large frame with tiles"
+	icon_state = "frame_tiles20"
+	icon = 'icons/turf/marks_ds13.dmi'
+
+/obj/effect/floor_decal/dank/frame_tiled_large_01
+	name = "large frame with tiles"
+	icon_state = "frame_tiles01"
+	icon = 'icons/turf/marks_ds13.dmi'
+
+/obj/effect/floor_decal/dank/frame_tiled_large_11
+	name = "large frame with tiles"
+	icon_state = "frame_tiles11"
+	icon = 'icons/turf/marks_ds13.dmi'
+
+/obj/effect/floor_decal/dank/frame_tiled_large_21
+	name = "large frame with tiles"
+	icon_state = "frame_tiles21"
+	icon = 'icons/turf/marks_ds13.dmi'
+
+/obj/effect/floor_decal/dank/frame_tiled_large_02
+	name = "large frame with tiles"
+	icon_state = "frame_tiles02"
+	icon = 'icons/turf/marks_ds13.dmi'
+
+/obj/effect/floor_decal/dank/frame_tiled_large_12
+	name = "large frame with tiles"
+	icon_state = "frame_tiles12"
+	icon = 'icons/turf/marks_ds13.dmi'
+
+/obj/effect/floor_decal/dank/frame_tiled_large_22
+	name = "large frame with tiles"
+	icon_state = "frame_tiles22"
+	icon = 'icons/turf/marks_ds13.dmi'
 
 //DS13 Escape Pod floor
 /obj/effect/floor_decal/pod

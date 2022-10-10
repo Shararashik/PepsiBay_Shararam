@@ -3058,6 +3058,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters/commissary)
+"kl" = (
+/turf/unsimulated/mask,
+/area/hallway/primary/fourthdeck/center)
 "ko" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -30626,11 +30629,11 @@ TS
 Qr
 KI
 rp
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+kl
 pZ
 rh
 sC
@@ -30828,11 +30831,11 @@ TS
 Kt
 KI
 rp
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+kl
 MR
 qa
 sD
@@ -31030,11 +31033,11 @@ TS
 Kt
 KI
 rp
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+kl
 MR
 ri
 sL
@@ -31232,11 +31235,11 @@ uu
 ya
 KI
 rp
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+kl
 MR
 qa
 sF
@@ -31434,11 +31437,11 @@ Mh
 XC
 UQ
 rp
-MR
-MR
-MR
-MR
-MR
+kl
+kl
+kl
+kl
+kl
 rp
 PS
 XV
