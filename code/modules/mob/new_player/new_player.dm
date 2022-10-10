@@ -1,4 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
+var/global/list/new_player_list = list()
 
 /mob/new_player
 	var/ready = 0
@@ -9,7 +10,7 @@
 	var/datum/browser/panel
 	var/show_invalid_jobs = 0
 	universal_speak = TRUE
-	hud_type = /datum/hud/new_player
+	//hud_type = /datum/hud/new_player
 
 	invisibility = 101
 
@@ -110,30 +111,35 @@
 			stat("Next Continue Vote:", "[max(round(transfer_controller.time_till_transfer_vote() / 600, 1), 0)] minutes")
 
 
-/mob/new_player/Topic(href, href_list) // This is a full override; does not call parent.
-	if (usr != src)
-		return TOPIC_NOACTION
-	if (!client)
-		return TOPIC_NOACTION
-	if (href_list["show_preferences"])
+/mob/new_player/Topic(href, href_list[])
+	if(src != usr || !client)
+		return
+
+	if(href_list["lobby_changelog"])
+		client.changes()
+		sound_to(client, 'sound/effects/menu_click.ogg')
+		return
+
+	if(href_list["lobby_setup"])
 		client.prefs.open_setup_window(src)
+		sound_to(client, 'sound/effects/menu_click.ogg')
+		change_lobbyscreen()
 		return 1
-	if (href_list["show_wiki"])
-		client.link_url(config.wiki_url, "Wiki", TRUE)
-		return 1
-	if (href_list["show_rules"])
-		client.link_url(config.rules_url, "Rules", TRUE)
-		return 1
-	if (href_list["show_lore"])
-		client.link_url(config.lore_url, "Lore", TRUE)
-		return 1
-	if (href_list["ready"])
-		ready = GAME_STATE > RUNLEVEL_LOBBY ? 0 : text2num(href_list["ready"])
-	if (href_list["refresh"])
-		panel.close()
-		//if(client)
-			//new_player_panel()
-	if(href_list["observe"])
+
+	if(href_list["lobby_ready"])
+		ready = !ready
+		client << output(ready, "lobbybrowser:setReadyStatus")
+		sound_to(client, 'sound/effects/menu_click.ogg')
+		//if(GAME_STATE > RUNLEVEL_LOBBY)
+		show_titlescreen(client)
+		//return
+
+	if(href_list["lobby_observe"])
+		sound_to(client, 'sound/effects/menu_click.ogg')
+		if(!check_rights(R_ADMIN))
+			to_chat(src, "<span class='warning'>У вас нет прав наблюдать трагедию.</span>")
+			return
+
 		if(GAME_STATE < RUNLEVEL_LOBBY)
 			to_chat(src, "<span class='warning'>Пожалуйста, подождите загрузки сервера.</span>")
 			return
@@ -176,7 +182,8 @@
 
 			return 1
 
-	if(href_list["late_join"])
+	if(href_list["lobby_join"])
+		sound_to(client, 'sound/effects/menu_click.ogg')
 		if(GAME_STATE != RUNLEVEL_GAME)
 			to_chat(usr, SPAN_WARNING("Раунд или не начался или уже закончился..."))
 			return
@@ -187,10 +194,13 @@
 				return
 		LateChoices() //show the latejoin job selection menu
 
-	if(href_list["manifest"])
+	if(href_list["lobby_crew"])
+		sound_to(client, 'sound/effects/menu_click.ogg')
 		ViewManifest()
+		return
 
 	if(href_list["SelectedJob"])
+		sound_to(client, 'sound/effects/menu_click.ogg')
 		var/datum/job/job = SSjobs.get_by_title(href_list["SelectedJob"])
 
 		if(!SSjobs.check_general_join_blockers(src, job))
@@ -203,18 +213,15 @@
 		AttemptLateSpawn(job, client.prefs.spawnpoint)
 		return
 
-	if(!ready && href_list["preference"])
+	if(href_list["preference"] && (!ready || (href_list["preference"] == "close")))
 		if(client)
 			client.prefs.process_link(src, href_list)
+			sound_to(client, 'sound/effects/menu_click.ogg')
+		return
 
-	if(href_list["invalid_jobs"])
-		show_invalid_jobs = !show_invalid_jobs
-		LateChoices()
-
-	//else if(!href_list["late_join"])
-		//if(client)
-			//new_player_panel()
-
+	else
+		//to_chat(src, "Locked! You are ready.")
+		return
 
 //Procs used in the new main menu (former hrefs)
 /mob/new_player/proc/observe(href, href_list)

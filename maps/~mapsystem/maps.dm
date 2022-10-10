@@ -511,12 +511,41 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 		num2text(HAIL_FREQ)  = list(),
 	)
 
+/datum/asset/simple/lobby
+	assets = list(
+		"FixedsysExcelsior3.01Regular.ttf" = 'html/browser/FixedsysExcelsior3.01Regular.ttf',
+	)
+
+/proc/change_lobbyscreen(new_screen)
+	if(new_screen)
+		global.current_lobby_screen = new_screen
+	else
+		global.current_lobby_screen = pick(global.lobby_screens)
+
+
+/mob/new_player/proc/show_titlescreen(client/C)
+	winset(C, "lobbybrowser", "is-disabled=false;is-visible=true")
+
+	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/lobby) //Sending pictures to the client
+	assets.send(src)
+
+	C << browse(pick(global.lobby_screens), "file=titlescreen.gif;display=0")
+	C << browse(get_lobby_html(), "window=lobbybrowser")
+
+/mob/new_player/proc/hide_titlescreen(client/C)
+	if(C.mob) // Check if the client is still connected to something
+		// Hide title screen, allowing player to see the map
+		winset(C, "lobbybrowser", "is-disabled=true;is-visible=false")
+
 /*
 /datum/map/proc/show_titlescreen(client/C)
 	winset(C, "lobbybrowser", "is-disabled=false;is-visible=true")
 
-	show_browser(C, current_lobby_screen, "file=titlescreen.png;display=0")
-	show_browser(C, file('html/lobby_titlescreen.html'), "window=lobbybrowser")
+	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/lobby) //Sending pictures to the client
+	assets.send(src)
+
+	C << browse(global.current_lobby_screen, "file=titlescreen.gif;display=0")
+	C << browse(get_lobby_html(), "window=lobbybrowser")
 
 /datum/map/proc/hide_titlescreen(client/C)
 	if(C.mob) // Check if the client is still connected to something

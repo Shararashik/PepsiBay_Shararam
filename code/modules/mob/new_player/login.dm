@@ -12,9 +12,12 @@
 
 	loc = null
 	//GLOB.using_map.show_titlescreen(client)
+	new_player_list += src
+	show_titlescreen(client)
+	change_lobbyscreen()
 	my_client = client
 	//set_sight(sight|SEE_TURFS)
-	set_sight(sight|SEE_TURFS|SEE_OBJS)
+	set_sight(sight|SEE_TURFS)
 
 	// Add to player list if missing
 	if (!GLOB.player_list.Find(src))

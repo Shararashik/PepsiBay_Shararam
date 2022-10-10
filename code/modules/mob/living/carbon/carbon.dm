@@ -333,6 +333,8 @@
 			step(src, inertia_dir)
 
 	item.throw_at(target, throw_range, item.throw_speed * skill_mod, src)
+	// Animate the mob throwing.
+	animate_throw(src)
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if (status_flags & GODMODE)

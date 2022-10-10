@@ -1,156 +1,136 @@
-//MENU SYSTEM BY BIGRAGE, some awful code, some awful design, all as you love //Code edits/additions by AshtonFox
+// Possibles title screens
+var/global/list/lobby_screens = list('maps/torch/lobby/dispater.gif', 'maps/torch/lobby/cargolobby.gif', 'maps/torch/lobby/cryo.gif', 'maps/torch/lobby/trite.gif', 'maps/torch/lobby/powerloader.gif', 'maps/torch/lobby/exoplanet.gif', 'maps/torch/lobby/alien.gif', 'maps/torch/lobby/hull.gif', 'maps/torch/lobby/marines.gif', 'maps/torch/lobby/xenomorph.gif', 'maps/torch/lobby/man.gif')
 
-/datum/hud/new_player
-	hud_shown = TRUE			//Used for the HUD toggle (F12)
-	inventory_shown = FALSE
-	hotkey_ui_hidden = FALSE
+var/global/current_lobby_screen = pick(global.lobby_screens)
 
-/datum/hud/new_player/FinalizeInstantiation(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#fffffe", var/ui_alpha = 255)
-	adding = list()
-	var/obj/screen/using
+#define CROSS_BOX "<span style='color:red'>☒</span>"
+#define CHECK_BOX "<span style='color:lime'>☑</span>"
 
-	using = new /obj/screen/new_player/title() //all MENU UI
-	using.SetName("Title")
-	adding += using
+#define MARK_READY     "READY [CHECK_BOX]"
+#define MARK_NOT_READY "READY [CROSS_BOX]"
 
-	using = new /obj/screen/new_player/selection/join_game()
-	using.SetName("Join Game")
-	adding += using
+#define QUALITY_READY     "QUALITY [CHECK_BOX]"
+#define QUALITY_NOT_READY "QUALITY [CROSS_BOX]"
 
-	using = new /obj/screen/new_player/selection/settings()
-	using.SetName("Setup Character")
-	adding += using
+/mob/new_player/proc/get_lobby_html()
+	change_lobbyscreen()
+	var/dat = {"
+	<html>
+		<head>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<style>
+				@font-face {
+					font-family: "Fixedsys";
+					src: url("FixedsysExcelsior3.01Regular.ttf");
+				}
 
-	using = new /obj/screen/new_player/selection/manifest()
-	using.SetName("Crew Manifest")
-	adding += using
+				body,
+				html {
+					margin: 0;
+					overflow: hidden;
+					text-align: center;
+					background-color: black;
+					-ms-user-select: none;
+				}
 
-	using = new /obj/screen/new_player/selection/observe()
-	using.SetName("Observe")
-	adding += using
+				img {
+					border-style: none;
+				}
 
-	using = new /obj/screen/new_player/selection/changelog()
-	using.SetName("Changelog")
-	adding += using
+				.back {
+					position: absolute;
+					width: auto;
+					height: 100vmin;
+					min-width: 100vmin;
+					min-height: 100vmin;
+					top: 50%;
+					left:50%;
+					transform: translate(-50%, -50%);
+					z-index: 0;
+				}
 
-	//using = new /obj/screen/new_player/selection/polls()
-	//using.SetName("Polls")
-	//adding += using
+				.container_nav {
+					position: absolute;
+					width: auto;
+					min-width: 100vmin;
+					min-height: 50vmin;
+					padding-left: 10vmin;
+					padding-top: 60vmin;
+					box-sizing: border-box;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					z-index: 1;
+				}
 
-	mymob.client.screen = list()
-	mymob.client.screen += adding
-	src.adding += using
+				.menu_a {
+					display: inline-block;
+					font-family: "Fixedsys";
+					font-weight: lighter;
+					text-decoration: none;
+					width: 25%;
+					text-align: left;
+					color:white;
+					margin-right: 100%;
+					margin-top: 5px;
+					padding-left: 6px;
+					font-size: 4vmin;
+					line-height: 4vmin;
+					height: 4vmin;
+					letter-spacing: 1px;
+				}
 
+				.menu_a:hover {
+					border-left: 3px solid white;
+					font-weight: bolder;
+					padding-left: 3px;
+				}
 
-/obj/screen/new_player
-	icon = 'icons/misc/hudmenu.dmi'
-	plane = HUD_PLANE
-	layer = HUD_BASE_LAYER
+			</style>
+		</head>
+		<body>
+			<div class="container_nav">
+				<a class="menu_a" href='?src=\ref[src];lobby_setup=1'>SETUP</a>
+	"}
 
-/obj/screen/new_player/title
-	name = "Title"
-	screen_loc = "WEST,SOUTH"
-	var/lobby_index = 1
-
-/obj/screen/new_player/title/Initialize()
-	icon = GLOB.using_map.lobby_icon
-	var/known_icon_states = icon_states(icon)
-	for(var/lobby_screen in GLOB.using_map.lobby_screens)
-		if(!(lobby_screen in known_icon_states))
-			error("Lobby screen '[lobby_screen]' did not exist in the icon set [icon].")
-			GLOB.using_map.lobby_screens -= lobby_screen
-
-	if(GLOB.using_map.lobby_screens.len)
-		icon_state = pick(GLOB.using_map.lobby_screens)
+	if(!SSticker || GAME_STATE <= RUNLEVEL_LOBBY)
+		dat += {"<a id="ready" class="menu_a" href='?src=\ref[src];lobby_ready=1'>[ready ? MARK_READY : MARK_NOT_READY]</a>"}
 	else
-		icon_state = known_icon_states[1]
+		dat += {"<a class="menu_a" href='?src=\ref[src];lobby_crew=1'>CREW</a>"}
+		dat += {"<a class="menu_a" href='?src=\ref[src];lobby_join=1'>JOIN</a>"}
 
-	. = ..()
+	//var/has_quality = client.prefs.selected_quality_name
+	//dat += {"<a id="quality" class="menu_a" href='?src=\ref[src];lobby_be_special=1'>[has_quality ? QUALITY_READY : QUALITY_NOT_READY]</a>"}
+	if(check_rights(R_ADMIN))
+		dat += {"<a class="menu_a" href='?src=\ref[src];lobby_observe=1'>OBSERVE</a>"}
 
+	dat += "<br><br>"
+	dat += {"<a class="menu_a" href='?src=\ref[src];lobby_changelog=1'>CHANGELOG</a>"}
 
-/obj/screen/new_player/selection/join_game
-	name = "Join Game"
-	icon_state = "unready"
-	screen_loc = "LEFT+1,CENTER"
+	dat += "</div>"
+	dat += {"<img src="titlescreen.gif" class="back" alt="">"}
+	dat += {"
 
-/obj/screen/new_player/selection/settings
-	name = "Setup"
-	icon_state = "setup"
-	screen_loc = "LEFT+1,CENTER-1"
+	<script>
+		var ready_mark = document.getElementById("ready");
+		function setReadyStatus(isReady) {
+			ready_mark.innerHTML = Boolean(Number(isReady)) ? "[MARK_READY]" : "[MARK_NOT_READY]";
+		}
 
-/obj/screen/new_player/selection/manifest
-	name = "Crew Manifest"
-	icon_state = "manifest"
-	screen_loc = "LEFT+1,CENTER-2"
+		var quality_mark=document.getElementById("quality");
+		function set_quality(setQuality) {
+			quality_mark.innerHTML = Boolean(Number(setQuality)) ? "[QUALITY_READY]" : "[QUALITY_NOT_READY]";
+		}
+	</script>
+	"}
+	dat += "</body></html>"
+	return dat
 
-/obj/screen/new_player/selection/observe
-	name = "Observe"
-	icon_state = "observe"
-	screen_loc = "LEFT+1,CENTER-3"
+#undef CROSS_BOX
+#undef CHECK_BOX
 
-/obj/screen/new_player/selection/changelog
-	name = "Changelog"
-	icon_state = "changelog"
-	screen_loc = "LEFT+1,CENTER-4"
-
-/obj/screen/new_player/selection/polls
-	name = "Polls"
-	icon_state = "polls"
-	screen_loc = "LEFT+1,CENTER-5"
-
-//SELECTION
-
-/obj/screen/new_player/selection/New(var/desired_loc)
-	color = null
-	return ..()
-
-/obj/screen/new_player/selection/join_game/New()
-	var/mob/new_player/player = usr
-	if(GAME_STATE <= RUNLEVEL_LOBBY)
-		if(player.ready)
-			icon_state = "ready"
-		else
-			icon_state = "unready"
-	else
-		icon_state = "joingame"
-
-/obj/screen/new_player/selection/join_game/Click()
-	var/mob/new_player/player = usr
-	sound_to(player, 'sound/effects/menu_click.ogg')
-	if(GAME_STATE <= RUNLEVEL_LOBBY)
-		if(player.ready)
-			player.ready = FALSE
-			player.ready()
-			icon_state = "unready"
-		else
-			player.ready = TRUE
-			player.ready()
-			icon_state = "ready"
-	else
-		icon_state = "joingame"
-		player.join_game()
-
-/obj/screen/new_player/selection/manifest/Click()
-	var/mob/new_player/player = usr
-	sound_to(player, 'sound/effects/menu_click.ogg')
-	player.ViewManifest()
-
-/obj/screen/new_player/selection/observe/Click()
-	var/mob/new_player/player = usr
-	sound_to(player, 'sound/effects/menu_click.ogg')
-	player.observe()
-
-/obj/screen/new_player/selection/settings/Click()
-	var/mob/new_player/player = usr
-	sound_to(player, 'sound/effects/menu_click.ogg')
-	player.setupcharacter()
-
-/obj/screen/new_player/selection/changelog/Click()
-	var/mob/new_player/player = usr
-	sound_to(player, 'sound/effects/menu_click.ogg')
-	player.client.changes()
-
-/obj/screen/new_player/selection/poll/Click()
-	var/mob/new_player/player = usr
-	sound_to(player, 'sound/effects/menu_click.ogg')
-	//player.handle_player_polling()
+#undef MARK_READY
+#undef MARK_NOT_READY
+#undef QUALITY_READY
+#undef QUALITY_NOT_READY

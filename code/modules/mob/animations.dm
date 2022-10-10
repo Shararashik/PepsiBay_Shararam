@@ -300,6 +300,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 		return
 	if (QDELETED(old_loc))
 		return
+	if(target.loc == src.loc)
+		return
 
 	var/turf/old_turf = get_turf(old_loc)
 	var/image/I = image(icon = src, loc = old_turf)
@@ -391,3 +393,28 @@ note dizziness decrements automatically in the mob's Life() proc.
 		update_icons()
 		return TRUE
 	return FALSE
+
+/proc/animate_throw(atom/A)
+	var/ipx = A.pixel_x
+	var/ipy = A.pixel_y
+	var/mpx = 0
+	var/mpy = 0
+
+	if(A.dir & NORTH)
+		mpy += 3
+	else if(A.dir & SOUTH)
+		mpy -= 3
+	if(A.dir & EAST)
+		mpx += 3
+	else if(A.dir & WEST)
+		mpx -= 3
+
+	var/x = mpx + ipx
+	var/y = mpy + ipy
+
+	animate(A, pixel_x = x, pixel_y = y, time = 0.6, easing = EASE_OUT)
+
+	var/matrix/M = matrix(A.transform)
+	animate(transform = turn(A.transform, (mpx - mpy) * 4), time = 0.6, easing = EASE_OUT)
+	animate(pixel_x = ipx, pixel_y = ipy, time = 0.6, easing = EASE_IN)
+	animate(transform = M, time = 0.6, easing = EASE_IN)

@@ -175,12 +175,8 @@ SUBSYSTEM_DEF(ticker)
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup() // Drafts antags who don't override jobs.
-		to_world("<span class='info'><B>Наслаждайтесь игрой и делайте её чуть лучше другим!</B></span>")
+		to_world("<span class='info'><B>Трагедия начинается!</B></span>")
 		sound_to(world, sound(GLOB.using_map.welcome_sound))
-
-		//for (var/mob/new_player/player in GLOB.player_list)
-			//player.new_player_panel()
-
 	if(!GLOB.admins.len)
 		send2adminirc("Round has started with no admins online.")
 

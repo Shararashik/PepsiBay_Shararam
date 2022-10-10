@@ -436,6 +436,7 @@ TORCH_ESCAPE_POD(17)
 	name = "In transit"
 	landmark_tag = "nav_transit_guppy"
 
+/*
 /datum/shuttle/autodock/overmap/aquila
 	name = "Aquila"
 	move_time = 50
@@ -447,6 +448,7 @@ TORCH_ESCAPE_POD(17)
 	logging_home_tag = "nav_hangar_aquila"
 	logging_access = access_aquila_helm
 	ceiling_type = /turf/simulated/floor/shuttle_ceiling/torch
+*/
 
 /obj/effect/shuttle_landmark/torch/hangar/aquila
 	name = "Aquila Hangar"
@@ -477,6 +479,7 @@ TORCH_ESCAPE_POD(17)
 /obj/effect/shuttle_landmark/transit/torch/aquila
 	name = "In transit"
 	landmark_tag = "nav_transit_aquila"
+
 
 //Makes the deck management program use hangar access
 /datum/nano_module/deck_management
