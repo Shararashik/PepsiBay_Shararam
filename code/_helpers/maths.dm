@@ -135,6 +135,8 @@
 		return sum / ((x * y) - x)
 	return sum + x
 
+/proc/Ceiling(x)
+	return -round(-x)
 
 /// An aproximate, fairly granular random normal real number in 0..1
 #define Nrand Drand(4, 6, TRUE)
