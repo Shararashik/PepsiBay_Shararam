@@ -98,7 +98,7 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/list/lobby_tracks = list()                  // The list of lobby tracks to pick() from. If left unset will randomly select among all available decl/audio/track subtypes.
 	var/lobby_transitions = FALSE          // If a number, transition between the lobby screens with this delay instead of picking just one.
 	var/lobby_icon
-	var/welcome_sound = 'sound/AI/welcome.ogg'		// Sound played on roundstart
+	var/welcome_sound = 'sound/interactions/round_start.ogg'		// Sound played on roundstart
 
 	var/default_law_type = /datum/ai_laws/nanotrasen  // The default lawset use by synth units, if not overriden by their laws var.
 	var/security_state = /decl/security_state/default // The default security state system to use.

@@ -292,6 +292,76 @@ note dizziness decrements automatically in the mob's Life() proc.
 	. = ..()
 	on_structure_offset(0)
 
+/atom/movable/proc/do_pickup_animation(atom/target, var/image/pickup_animation = image(icon, loc, icon_state, ABOVE_HUMAN_LAYER, dir, pixel_x, pixel_y))
+	if(!isturf(loc))
+		return
+	pickup_animation.color = color
+	pickup_animation.transform.Scale(0.75)
+	pickup_animation.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+	var/turf/T = get_turf(src)
+	var/direction = get_dir(T, target)
+	var/to_x = target.pixel_x
+	var/to_y = target.pixel_y
+
+	if(direction & NORTH)
+		to_y += 32
+	else if(direction & SOUTH)
+		to_y -= 32
+	if(direction & EAST)
+		to_x += 32
+	else if(direction & WEST)
+		to_x -= 32
+	if(!direction)
+		to_y += 10
+		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
+
+	flick_overlay(pickup_animation, target, 4)
+	var/matrix/animation_matrix = new(pickup_animation.transform)
+	animation_matrix.Turn(pick(-30, 30))
+	animation_matrix.Scale(0.65)
+
+	animate(pickup_animation, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 3, transform = animation_matrix, easing = CUBIC_EASING)
+	animate(alpha = 0, transform = matrix().Scale(0.7), time = 1)
+
+/atom/movable/proc/do_drop_animation(atom/moving_from)
+	if(!isturf(loc))
+		return
+	var/turf/current_turf = get_turf(src)
+	var/direction = get_dir(moving_from, current_turf)
+	var/from_x = 0
+	var/from_y = 0
+
+	if(direction & NORTH)
+		from_y -= 32
+	else if(direction & SOUTH)
+		from_y += 32
+	if(direction & EAST)
+		from_x -= 32
+	else if(direction & WEST)
+		from_x += 32
+	if(!direction)
+		from_y += 10
+		from_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
+
+	//We're moving from these chords to our current ones
+	var/old_x = pixel_x
+	var/old_y = pixel_y
+	var/old_alpha = alpha
+	var/matrix/old_transform = transform
+	var/matrix/animation_matrix = new(old_transform)
+	animation_matrix.Turn(pick(-30, 30))
+	animation_matrix.Scale(0.7) // Shrink to start, end up normal sized
+
+	pixel_x = from_x
+	pixel_y = from_y
+	alpha = 0
+	transform = animation_matrix
+
+	// This is instant on byond's end, but to our clients this looks like a quick drop
+	animate(src, alpha = old_alpha, pixel_x = old_x, pixel_y = old_y, transform = old_transform, time = 3, easing = CUBIC_EASING)
+
+/*
 /atom/movable/proc/do_pickup_animation(atom/target, atom/old_loc)
 	set waitfor = FALSE
 	if (QDELETED(src))
@@ -377,22 +447,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	invisibility = old_invisibility
 	pixel_x = old_x
 	pixel_y = old_y
-
-/mob/drop_from_inventory(var/obj/item/W, var/atom/target = null, drop_flag = null)
-	if(W)
-		if(!target)
-			target = loc
-
-		remove_from_mob(W)
-		if(!(W && W.loc))
-			return TRUE // self destroying objects (tk, grabs)
-
-		if(W.loc != target)
-			addtimer(CALLBACK(W, /atom/movable/.proc/do_putdown_animation, target, src), 0)
-			W.forceMove(target, drop_flag)
-		update_icons()
-		return TRUE
-	return FALSE
+*/
 
 /proc/animate_throw(atom/A)
 	var/ipx = A.pixel_x

@@ -486,9 +486,20 @@
 	return A && A.lightswitch && ..(power_channel)
 
 /// Causes the light to start flickering.
+
+var/global/list/lightflickersounds = list('sound/machines/light_flicker101.ogg','sound/machines/light_flicker102.ogg','sound/machines/light_flicker103.ogg','sound/machines/light_flicker104.ogg','sound/machines/light_flicker105.ogg','sound/machines/light_flicker106.ogg','sound/machines/light_flicker107.ogg','sound/machines/light_flicker108.ogg','sound/machines/light_flicker109.ogg',
+'sound/machines/light_flicker110.ogg','sound/machines/light_flicker111.ogg','sound/machines/light_flicker112.ogg','sound/machines/light_flicker113.ogg','sound/machines/light_flicker114.ogg','sound/machines/light_flicker115.ogg','sound/machines/light_flicker116.ogg','sound/machines/light_flicker117.ogg','sound/machines/light_flicker118.ogg','sound/machines/light_flicker119.ogg','sound/machines/light_flicker120.ogg',
+'sound/machines/light_flicker121.ogg','sound/machines/light_flicker122.ogg','sound/machines/light_flicker123.ogg','sound/machines/light_flicker124.ogg')
+
+/obj/machinery/light/Process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
+	if(on)
+		if(prob(0.28))
+			flicker()
+
 /obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	if(flickering) return
 	flickering = TRUE
+	playsound(src.loc, pick(lightflickersounds),20,0,10, is_ambiance = 1)
 	spawn(0)
 		if(on && get_status() == LIGHT_OK)
 			for(var/i = 0; i < amount; i++)

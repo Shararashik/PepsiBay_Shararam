@@ -150,11 +150,16 @@
 // If canremove or other conditions need to be checked then use unEquip instead.
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	if(W)
-		remove_from_mob(W, target)
-		if(!(W && W.loc)) return 1 // self destroying objects (tk, grabs)
-		update_icons()
-		return 1
-	return 0
+		if(!target)
+			target = loc
+		remove_from_mob(W)
+		if(!(W && W.loc))
+			return TRUE
+		W.forceMove(target)
+		W.do_drop_animation(src)
+		update_icon()
+		return TRUE
+	return FALSE
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(atom/Target, force)

@@ -902,6 +902,7 @@
 
 /obj/machinery/power/apc/proc/toggle_breaker()
 	operating = !operating
+	playsound(src.loc, 'sound/machines/apc_power.ogg',15,1,10)
 	force_update_channels()
 
 /obj/machinery/power/apc/get_power_usage()

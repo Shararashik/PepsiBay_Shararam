@@ -1,11 +1,16 @@
 /decl/maneuver/leap
 	name = "leap"
-	stamina_cost = 10
+	stamina_cost = 0.5
 	reflexive_modifier = 1.5
+	cooldown = 1 SECONDS
+	delay = 1 SECONDS
 
 /decl/maneuver/leap/perform(var/mob/living/user, var/atom/target, var/strength, var/reflexively = FALSE)
 	. = ..()
 	if(.)
+		if(user.get_stamina() <= 25)
+			to_chat(user, SPAN_WARNING("You are exhausted!"))
+			return
 		var/old_pass_flags = user.pass_flags
 		user.pass_flags |= PASS_FLAG_TABLE
 		user.visible_message(SPAN_DANGER("\The [user] takes a flying leap!"))
@@ -17,6 +22,7 @@
 		animate(pixel_z = user.default_pixel_z, time = 3, easing = SINE_EASING | EASE_OUT)
 		user.throw_at(get_turf(target), strength, 1, user, FALSE, CALLBACK(src, /decl/maneuver/leap/proc/end_leap, user, target, old_pass_flags))
 		playsound(user, user.gender == MALE ? 'sound/effects/jump_male.ogg' : 'sound/effects/jump_female.ogg', 25, 0, 1)
+		user.adjust_stamina(-35+(user.get_skill_value(SKILL_HAULING)/SKILL_MAX) * 10)
 		addtimer(CALLBACK(user, /mob/living/proc/jump_layer_shift_end), 4.5)
 
 //Jumping
@@ -41,7 +47,7 @@
 	playsound(user, user.gender == MALE ? 'sound/effects/jump_male.ogg' : 'sound/effects/jump_female.ogg', 25, 0, 1)
 	user.visible_message("<span class='danger'>[user.name] jumps.</span>", \
 					"<span class='warning'> I jump to [loc]!</span>")
-	user.throw_at(target, 3, 0.5, user, FALSE, CALLBACK(src, /decl/maneuver/leap/proc/end_leap, user, target))
+	user.throw_at(target, 3, 0.5, user, FALSE)
 	user.adjust_stamina(-35+(user.get_skill_value(SKILL_HAULING)/SKILL_MAX) * 10)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 

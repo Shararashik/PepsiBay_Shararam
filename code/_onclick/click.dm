@@ -449,6 +449,6 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 
 /atom/proc/middle_click_intent_check(var/mob/M)
 	if(M.middle_click_intent == "jump")
-		jump_act(src, M)
+		//jump_act(src, M)
 	else
 		M.swap_hand()

@@ -248,8 +248,8 @@
 	if(QDELETED(src))
 		return // Unequipping changes our state, so must check here.
 
-	pickup(user)
-
+	//pickup(user)
+	src.pickup(user)
 
 	if(user.put_in_active_hand(src))
 		//if (isturf(old_loc))
@@ -316,9 +316,16 @@
 		if(user.r_hand)
 			user.r_hand.update_twohanding()
 
+/obj/item/do_pickup_animation(atom/target, var/image/pickup_animation = image(icon, loc, icon_state, ABOVE_HUMAN_LAYER, dir, pixel_x, pixel_y))
+	if(!isturf(loc))
+		return
+	pickup_animation.overlays = overlays
+	. = ..()
+
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	var/atom/old_loc = loc
+	//do_pickup_animation(user)
 	if(user.put_in_active_hand(src))
 		if (isturf(old_loc))
 			var/obj/effect/temporary/item_pickup_ghost/ghost = new(old_loc, src)
@@ -335,6 +342,7 @@
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
+	do_drop_animation(S)
 	return
 
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
