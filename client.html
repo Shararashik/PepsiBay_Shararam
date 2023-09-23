@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;client - Space Station 13 - Baystation 12</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13 - Baystation 12</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="client.html#var">Var Details</a> - <a href="client.html#proc">Proc Details</a></header>
+<main>
+<h1>client <aside>/<a href="client.html">client</a></aside><aside> inherits /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/_onclick/hud/skybox.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;skybox.dm 9"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="client.html#var/adj_mask">adj_mask</a></th><td>A circle image used to somewhat uncover the adjacent portion of the shadow cone, making mobs and objects behind us somewhat visible.
+The owner mask is still required for those mob going over the default 32x32 px size btw.</td></tr>
+            <tr><th><a href="client.html#var/angle">angle</a></th><td>How much is the cone rotated clockwise, purely backend. Please use rotate_shadow_cone() if you must.</td></tr>
+            <tr><th><a href="client.html#var/current_fov_size">current_fov_size</a></th><td>The current screen size this field of vision is meant to fit for.</td></tr>
+            <tr><th><a href="client.html#var/fov">fov</a></th><td>That special invisible, almost neigh indestructible movable
+that holds both shadow cone mask and image and follows the player around.</td></tr>
+            <tr><th><a href="client.html#var/nested_locs">nested_locs</a></th><td>A list of nested locations the mob is in, to ensure the above image works correctly.</td></tr>
+            <tr><th><a href="client.html#var/next_ambience_time">next_ambience_time</a></th><td>The next threshold time for the client to be able to play basic ambience sounds.</td></tr>
+            <tr><th><a href="client.html#var/owner_mask">owner_mask</a></th><td>An image whose render_source is kept up to date to prevent the mob (or the topmost movable holding it) from being hidden by the mask.
+Will make it use vis_contents instead once a few byonds bugs with images and vis contents are fixed.</td></tr>
+            <tr><th><a href="client.html#var/playing_vent_ambience">playing_vent_ambience</a></th><td>Whether or not the client is currently playing the &quot;ship hum&quot; ambience sound.</td></tr>
+            <tr><th><a href="client.html#var/rot_scale">rot_scale</a></th><td>Used to scale the shadow cone when rotating it to fit over the edges of the screen.</td></tr>
+            <tr><th><a href="client.html#var/shadow_angle">shadow_angle</a></th><td>The inner angle of this cone, right hardset to 90, 180, or 270 degrees, until someone figures out a way to make it dynamic.</td></tr>
+            <tr><th><a href="client.html#var/shadow_mask">shadow_mask</a></th><td>The mask portion of the cone, placed on a * render target plane so while not visible it still applies the filter.</td></tr>
+            <tr><th><a href="client.html#var/visual_shadow">visual_shadow</a></th><td>The visual portion of the cone, placed on the highest layer of the wall plane</td></tr>
+            <tr><th><a href="client.html#var/width_n_height_offsets">width_n_height_offsets</a></th><td>A static list of offsets based on icon width and height, because render sources are centered unlike most other visuals,
+and that gives us some problems when the icon is larger or smaller than world.icon_size</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="client.html#proc/callproc">callproc</a></th><td>VERBS</td></tr>
+            <tr><th><a href="client.html#proc/nanoclose">nanoclose</a></th><td>Called when a Nano UI window is closed
+This is how Nano handles closed windows
+It must be a verb so that it can be called using winset</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/adj_mask"><aside class="declaration">var </aside>adj_mask
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 46"/></a></h3>
+        <p>A circle image used to somewhat uncover the adjacent portion of the shadow cone, making mobs and objects behind us somewhat visible.
+The owner mask is still required for those mob going over the default 32x32 px size btw.</p><h3 id="var/angle"><aside class="declaration">var </aside>angle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 28"/></a></h3>
+        <p>How much is the cone rotated clockwise, purely backend. Please use rotate_shadow_cone() if you must.</p><h3 id="var/current_fov_size"><aside class="declaration">var </aside>current_fov_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 26"/></a></h3>
+        <p>The current screen size this field of vision is meant to fit for.</p><h3 id="var/fov"><aside class="declaration">var </aside>fov
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/fov_holder</aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 24"/></a></h3>
+        <p>That special invisible, almost neigh indestructible movable
+that holds both shadow cone mask and image and follows the player around.</p><h3 id="var/nested_locs"><aside class="declaration">var </aside>nested_locs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 48"/></a></h3>
+        <p>A list of nested locations the mob is in, to ensure the above image works correctly.</p><h3 id="var/next_ambience_time"><aside class="declaration">var </aside>next_ambience_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/client/client_defines.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 30"/></a></h3>
+        <p>The next threshold time for the client to be able to play basic ambience sounds.</p><h3 id="var/owner_mask"><aside class="declaration">var </aside>owner_mask
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 41"/></a></h3>
+        <p>An image whose render_source is kept up to date to prevent the mob (or the topmost movable holding it) from being hidden by the mask.
+Will make it use vis_contents instead once a few byonds bugs with images and vis contents are fixed.</p><h3 id="var/playing_vent_ambience"><aside class="declaration">var </aside>playing_vent_ambience
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/client/client_defines.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 27"/></a></h3>
+        <p>Whether or not the client is currently playing the &quot;ship hum&quot; ambience sound.</p><h3 id="var/rot_scale"><aside class="declaration">var </aside>rot_scale
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 30"/></a></h3>
+        <p>Used to scale the shadow cone when rotating it to fit over the edges of the screen.</p><h3 id="var/shadow_angle"><aside class="declaration">var </aside>shadow_angle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 32"/></a></h3>
+        <p>The inner angle of this cone, right hardset to 90, 180, or 270 degrees, until someone figures out a way to make it dynamic.</p><h3 id="var/shadow_mask"><aside class="declaration">var </aside>shadow_mask
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 34"/></a></h3>
+        <p>The mask portion of the cone, placed on a * render target plane so while not visible it still applies the filter.</p><h3 id="var/visual_shadow"><aside class="declaration">var </aside>visual_shadow
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 36"/></a></h3>
+        <p>The visual portion of the cone, placed on the highest layer of the wall plane</p><h3 id="var/width_n_height_offsets"><aside class="declaration">var </aside>width_n_height_offsets
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/mob/living/carbon/human/vision_cone.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;vision_cone.dm 53"/></a></h3>
+        <p>A static list of offsets based on icon width and height, because render sources are centered unlike most other visuals,
+and that gives us some problems when the icon is larger or smaller than world.icon_size</p><h2 id="proc">Proc Details</h2><h3 id="proc/callproc"><aside class="declaration">proc </aside>callproc<aside>() 
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/admin/callproc/callproc.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;callproc&#x2F;callproc.dm 4"/></a></aside>
+        </h3>
+        <p>VERBS</p><h3 id="proc/nanoclose"><aside class="declaration">verb </aside>nanoclose<aside>(uiref) 
+        
+    
+            <a href="https://github.com/Shararashik/PepsiBay_Shararam/blob/af2a935cd6b309d22448e362c1cf54f27aeb1255/code/modules/nano/nanoexternal.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;nano&#x2F;nanoexternal.dm 10"/></a></aside>
+        </h3>
+        <p>Called when a Nano UI window is closed
+This is how Nano handles closed windows
+It must be a verb so that it can be called using winset</p>
+<p>@return nothing</p></main>
+<footer>
+    baystation12.dme
+    <a href="https://github.com/Shararashik/PepsiBay_Shararam/tree/af2a935cd6b309d22448e362c1cf54f27aeb1255">af2a935</a>
+        (dev) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>
